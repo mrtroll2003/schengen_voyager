@@ -8,6 +8,9 @@ WORKDIR /app
 # Copy the Flutter project files into the container
 COPY . .
 
+ARG GEMINI_API_KEY
+ARG PEXELS_API_KEY
+
 # Get Flutter dependencies
 RUN flutter pub get
 
@@ -15,8 +18,8 @@ RUN flutter pub get
 # You can include --dart-define here if you're using that method for API keys
 # e.g., RUN flutter build web --release --dart-define=GEMINI_API_KEY=$GEMINI_API_KEY --dart-define=PEXELS_API_KEY=$PEXELS_API_KEY
 RUN flutter build web --release \
-    --dart-define=GEMINI_API_KEY=$GEMINI_API_KEY \
-    --dart-define=PEXELS_API_KEY=$PEXELS_API_KEY
+    --dart-define=GEMINI_API_KEY=${GEMINI_API_KEY} \
+    --dart-define=PEXELS_API_KEY=${PEXELS_API_KEY}
 
 # --- Second stage: Use a lightweight web server to serve the static files ---
 # This creates a smaller final image.

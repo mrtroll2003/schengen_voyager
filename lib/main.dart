@@ -1,10 +1,8 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_dotenv/flutter_dotenv.dart'; // Import dotenv
 import 'package:schengen_voyager/screens/trip_planner_screen.dart';
 
 Future<void> main() async {
   WidgetsFlutterBinding.ensureInitialized(); // Needed for async main
-  await dotenv.load(fileName: ".env"); // Load .env file
   runApp(const MyApp());
 }
 

@@ -22,7 +22,7 @@ FROM nginx:alpine
 # Or use 'caddy', 'httpd-alpine', or any other lightweight server
 
 # Copy the built Flutter web app from the 'build' stage
-COPY --from=build /app/build/web /usr/share/nginx/html
+COPY --from=builder /app/build/web /usr/share/nginx/html
 
 # Expose port 80 (standard HTTP port)
 EXPOSE 80

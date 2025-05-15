@@ -14,7 +14,9 @@ RUN flutter pub get
 # Build the Flutter web application for release
 # You can include --dart-define here if you're using that method for API keys
 # e.g., RUN flutter build web --release --dart-define=GEMINI_API_KEY=$GEMINI_API_KEY --dart-define=PEXELS_API_KEY=$PEXELS_API_KEY
-RUN flutter build web --release
+RUN flutter build web --release \
+    --dart-define=GEMINI_API_KEY=$GEMINI_API_KEY \
+    --dart-define=PEXELS_API_KEY=$PEXELS_API_KEY
 
 # --- Second stage: Use a lightweight web server to serve the static files ---
 # This creates a smaller final image.

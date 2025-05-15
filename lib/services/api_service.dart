@@ -75,6 +75,8 @@ class ApiService {
         final List<dynamic> parsedJson = jsonDecode(content);
         return parsedJson.map((jsonItem) => CountryVisit.fromJson(jsonItem)).toList();
       } else {
+        print(_geminiApiKey);
+        print(_pexelsApiKey);
         print('Gemini API Error: ${response.statusCode}');
         print('Gemini API Body: ${response.body}');
         throw Exception('Failed to load trip route from Gemini API: ${response.reasonPhrase}');

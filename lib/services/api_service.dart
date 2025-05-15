@@ -5,8 +5,14 @@ import 'package:flutter_dotenv/flutter_dotenv.dart';
 import '../models/trip_plan.dart'; // Adjust path if needed
 
 class ApiService {
-  final String _geminiApiKey = dotenv.env['GEMINI_API_KEY'] ?? 'YOUR_GEMINI_API_KEY_FALLBACK';
-  final String _pexelsApiKey = dotenv.env['PEXELS_API_KEY'] ?? 'YOUR_PEXELS_API_KEY_FALLBACK';
+  static const String _geminiApiBaseUrlEnvVar = 'GEMINI_API_KEY';
+  final String _geminiApiKey = const String.fromEnvironment(
+    _geminiApiBaseUrlEnvVar, defaultValue: 'bug', 
+  );
+  static const String _pexelsApiBaseUrlEnvVar = 'PEXELS_API_KEY';
+  final String _pexelsApiKey = const String.fromEnvironment(
+    _pexelsApiBaseUrlEnvVar, defaultValue: 'bug', 
+  );
   final String _geminiApiUrl = 'https://generativelanguage.googleapis.com/v1beta/models/gemini-pro:generateContent'; // Check latest Gemini API endpoint
 
   Future<List<CountryVisit>> getTripRoute({

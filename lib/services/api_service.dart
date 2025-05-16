@@ -12,7 +12,7 @@ class ApiService {
   final String _pexelsApiKey = const String.fromEnvironment(
     _pexelsApiBaseUrlEnvVar, defaultValue: 'bug', 
   );
-  final String _geminiApiUrl = 'https://generativelanguage.googleapis.com/v1beta/models/gemini-1.5-pro:generateContent'; // Check latest Gemini API endpoint
+  final String _geminiApiUrl = 'https://generativelanguage.googleapis.com/v1beta/models/gemini-2.0-flash:generateContent'; // Check latest Gemini API endpoint
 
   Future<List<CountryVisit>> getTripRoute({
     required String startCountry,
@@ -75,8 +75,8 @@ class ApiService {
         final List<dynamic> parsedJson = jsonDecode(content);
         return parsedJson.map((jsonItem) => CountryVisit.fromJson(jsonItem)).toList();
       } else {
-        print(_geminiApiKey);
-        print(_pexelsApiKey);
+        //print(_geminiApiKey);
+        //print(_pexelsApiKey);
         print('Gemini API Error: ${response.statusCode}');
         print('Gemini API Body: ${response.body}');
         throw Exception('Failed to load trip route from Gemini API: ${response.reasonPhrase}');

@@ -1,7 +1,13 @@
 import 'package:flutter/material.dart';
+import 'dart:html' as html;
 
-class AboutScreen extends StatelessWidget {
+class AboutScreen extends StatefulWidget {
   const AboutScreen({super.key});
+
+  @override
+  State<AboutScreen> createState() => _AboutScreenState();
+}
+class _AboutScreenState extends State<AboutScreen> {
   final String Why = """Maybe you're a normal Asian with a gifted sibling/cousin studying somewhere in Europe, and now your parents want to know where they should visit after the graduation ceremony.
 Maybe you just find out about your privilege as an European, and want to enjoy your life before smashing your head into the monitor for 40hrs a week.
 Or maybe you're just a traveller who want to take advantage of your hard-earned Schengen visa to the fullest and don't want to listen to those pesky travel agency.
@@ -12,6 +18,29 @@ Anyway, hope this helps you. Have fun!
 (Sending some best regards from Vietnam right now, but pretty sure Customs will keep it anyway)
 P/S: Yeah, that image was from 2021, from my high school graduation. Cool, heh?
   """;
+  void _updatePageMetadata({String? title, String? description}) {
+    // ... (same function as in TripPlannerScreen)
+    if (title != null) {
+      html.document.title = title;
+    }
+    if (description != null) {
+      html.MetaElement? descriptionMeta = html.document.querySelector('meta[name="description"]') as html.MetaElement?;
+      if (descriptionMeta != null) {
+        descriptionMeta.content = description;
+      } else {
+        descriptionMeta = html.MetaElement()..name = 'description'..content = description;
+        html.document.head?.append(descriptionMeta);
+      }
+    }
+  }
+  @override
+  void initState() {
+    super.initState();
+    _updatePageMetadata(
+      title: 'About This Project',
+      description: 'Learn more about why this website even exist, and who the heck is the guy making it.',
+    );
+  }
 
   @override
   Widget build(BuildContext context) {

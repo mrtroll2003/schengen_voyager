@@ -24,7 +24,10 @@ RUN flutter build web --release \
 # --- Second stage: Use a lightweight web server to serve the static files ---
 # This creates a smaller final image.
 FROM nginx:alpine
-# Or use 'caddy', 'httpd-alpine', or any other lightweight server
+
+# Remove default nginx config
+RUN rm /etc/nginx/conf.d/default.conf
+COPY nginx.conf /etc/nginx/nginx.conf
 
 # Copy the built Flutter web app from the 'build' stage
 COPY --from=builder /app/build/web /usr/share/nginx/html

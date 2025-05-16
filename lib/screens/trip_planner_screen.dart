@@ -1,5 +1,7 @@
 // screens/trip_planner_screen.dart
 import 'package:flutter/material.dart';
+import 'package:go_router/go_router.dart';
+import 'dart:html' as html;
 import '../../data/countries.dart';
 import '../models/trip_plan.dart';
 import '../../services/api_service.dart';
@@ -23,6 +25,36 @@ class _TripPlannerScreenState extends State<TripPlannerScreen> {
 
   // To store fetched Pexels images to avoid refetching on rebuild
   final Map<String, String?> _landmarkImageUrls = {};
+
+  //for SEO
+  void _updatePageMetadata({String? title, String? description}) {
+    if (title != null) {
+      html.document.title = title;
+    }
+
+    if (description != null) {
+      html.MetaElement? descriptionMeta = html.document.querySelector('meta[name="description"]') as html.MetaElement?;
+      if (descriptionMeta != null) {
+        descriptionMeta.content = description;
+      } else {
+        // Create it if it doesn't exist in web/index.html
+        descriptionMeta = html.MetaElement()
+          ..name = 'description'
+          ..content = description;
+        html.document.head?.append(descriptionMeta);
+      }
+    }
+  }
+  @override
+  void initState() {
+    super.initState();
+    _updatePageMetadata(
+      title: 'Schengen Voyager - Europe Trip Planner',
+      description: 'Your AI-powered guide to crafting the perfect multi-country European adventure and enjoy your Schengen visa to the fullest!',
+    );
+    // If you have routes, you'd call this in the build method or
+    // based on route changes, passing different titles/descriptions.
+  }
 
   Future<void> _generateTripPlan() async {
     if (_selectedStartingCountry == null) {
@@ -168,10 +200,7 @@ class _TripPlannerScreenState extends State<TripPlannerScreen> {
         foregroundColor: Colors.white,
         actions: <Widget>[
           TextButton(onPressed: () {
-            Navigator.push(
-              context,
-              MaterialPageRoute(builder: (context) => const AboutScreen()),
-            );
+            context.go('/about');
           }, child: Text('About', style: TextStyle(color: Colors.white),))
         ],
       ),

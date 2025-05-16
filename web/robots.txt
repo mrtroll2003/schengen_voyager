@@ -1,0 +1,4 @@
+User-agent: *
+Allow: /
+# Disallow: /some-private-path/ # If you have any
+Sitemap: https://schengen-voyager.onrender.com/sitemap.xml

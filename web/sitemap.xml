@@ -2,11 +2,10 @@
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
   <url>
     <loc>https://schengen-voyager.onrender.com/</loc>
-    <lastmod>2025-05-16</lastmod> <!-- Update with actual date -->
+    <lastmod>2025-05-16</lastmod>
     <changefreq>weekly</changefreq>
     <priority>1.0</priority>
   </url>
-  <!-- Add other important static pages if you have them -->
   <url>
     <loc>https://schengen-voyager.onrender.com/about</loc>
     <lastmod>2025-05-16</lastmod>

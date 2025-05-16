@@ -2,11 +2,8 @@ import 'package:flutter/material.dart';
 import 'package:schengen_voyager/screens/trip_planner_screen.dart';
 import 'package:schengen_voyager/screens/about.dart';
 import 'package:go_router/go_router.dart';
+import 'package:flutter_web_plugins/url_strategy.dart';
 
-Future<void> main() async {
-  WidgetsFlutterBinding.ensureInitialized(); // Needed for async main
-  runApp(const MyApp());
-}
 final GoRouter _router = GoRouter(
   initialLocation: '/',
   routes: <RouteBase>[
@@ -38,6 +35,12 @@ final GoRouter _router = GoRouter(
     body: Center(child: Text('Oops! Page not found: ${state.error}')),
   ),
 );
+Future<void> main() async {
+  WidgetsFlutterBinding.ensureInitialized();// Needed for async main
+  usePathUrlStrategy(); 
+  runApp(const MyApp());
+}
+
 class MyApp extends StatelessWidget {
   const MyApp({super.key});
 

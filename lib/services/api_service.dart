@@ -79,8 +79,8 @@ class ApiService {
       } else {
         //print(_geminiApiKey);
         //print(_pexelsApiKey);
-        print('Gemini API Error: ${response.statusCode}');
-        print('Gemini API Body: ${response.body}');
+        //print('Gemini API Error: ${response.statusCode}');
+        //print('Gemini API Body: ${response.body}');
         throw Exception('Failed to load trip route from Gemini API: ${response.reasonPhrase}');
       }
     } catch (e) {

@@ -12,7 +12,7 @@ class ApiService {
   final String _pexelsApiKey = const String.fromEnvironment(
     _pexelsApiBaseUrlEnvVar, defaultValue: 'bug', 
   );
-  final String _geminiApiUrl = 'https://generativelanguage.googleapis.com/v1beta/models/gemini-2.5-pro-preview-05-06:generateContent'; // Check latest Gemini API endpoint
+  final String _geminiApiUrl = 'https://generativelanguage.googleapis.com/v1beta/models/gemini-2.0-flash:generateContent'; // Check latest Gemini API endpoint
 
   Future<List<CountryVisit>> getTripRoute({
     required String startCountry,

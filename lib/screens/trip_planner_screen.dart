@@ -3,6 +3,7 @@ import 'package:flutter/material.dart';
 import '../../data/countries.dart';
 import '../models/trip_plan.dart';
 import '../../services/api_service.dart';
+import './about.dart';
 
 class TripPlannerScreen extends StatefulWidget {
   const TripPlannerScreen({super.key});
@@ -165,6 +166,14 @@ class _TripPlannerScreenState extends State<TripPlannerScreen> {
         title: const Text('Schengen Trip Planner'),
         backgroundColor: Colors.deepPurpleAccent,
         foregroundColor: Colors.white,
+        actions: <Widget>[
+          TextButton(onPressed: () {
+            Navigator.push(
+              context,
+              MaterialPageRoute(builder: (context) => const AboutScreen()),
+            );
+          }, child: Text('About', style: TextStyle(color: Colors.white),))
+        ],
       ),
       body: SingleChildScrollView(
         padding: const EdgeInsets.all(16.0),

@@ -234,7 +234,7 @@ class _TripPlannerScreenState extends State<TripPlannerScreen> {
             TextField(
               controller: _customPromptController,
               decoration: InputDecoration(
-                labelText: 'Additional preferences for Gemini (optional)',
+                labelText: 'Additional preferences (optional)',
                 hintText: 'e.g., "Focus on historical sites", "Include kid-friendly activities"',
                 border: OutlineInputBorder(borderRadius: BorderRadius.circular(12)),
                 filled: true,

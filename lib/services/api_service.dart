@@ -12,12 +12,12 @@ class ApiService {
   final String _pexelsApiKey = const String.fromEnvironment(
     _pexelsApiBaseUrlEnvVar, defaultValue: 'bug', 
   );
-  final String _geminiApiUrl = 'https://generativelanguage.googleapis.com/v1beta/models/gemini-2.0-flash:generateContent'; // Check latest Gemini API endpoint
+  final String _geminiApiUrl = 'https://generativelanguage.googleapis.com/v1beta/models/gemini-2.5-pro-preview-05-06:generateContent'; // Check latest Gemini API endpoint
 
   Future<List<CountryVisit>> getTripRoute({
     required String startCountry,
     required int numberOfCountries,
-    required String customPromptText, // For user customization
+    required String customPromptText,
   }) async {
     // --- Customizable Gemini Prompt ---
     String prompt = """
@@ -28,9 +28,11 @@ class ApiService {
     Prioritize countries that are geographically sensible to visit in a sequence from the starting country.
     If $startCountry is not in the Schengen area, try to make the first country in the Schengen area the next logical stop if possible, or at least make the route flow well.
 
-    $customPromptText // User's custom additions to the prompt
-
-    Format your response as a JSON array of objects. Each object represents a country and should have the following structure:
+    $customPromptText
+    
+    Format your response STRICTLY as a JSON array of objects.
+    DO NOT include any Markdown formatting like ```json or ``` around the JSON output.
+    The response should begin directly with '[' and end directly with ']'. Each object represents a country and should have the following structure:
     {
         "countryId": "A unique sequential ID for the country in the route (e.g., 1, 2, 3...)",
         "countryName": "Name of the country",
@@ -53,7 +55,7 @@ class ApiService {
             {"landmarkId": 2, "landmarkName": "Louvre Museum", "landmarkDesc": "World's largest art museum, Mona Lisa."}
         ]
     }
-    Make sure the entire response is a valid JSON array.
+    Make sure the entire response is a valid JSON array, starting with '[' and ending with ']'.
     """;
 
     try {

@@ -26,7 +26,8 @@ RUN flutter build web --release \
 FROM nginx:alpine
 
 # Remove default nginx config
-RUN rm /etc/nginx/conf.d/default.conf
+RUN rm -f /etc/nginx/conf.d/default.conf
+RUN rm -f /etc/nginx/nginx.conf
 COPY nginx.conf /etc/nginx/nginx.conf
 
 # Copy the built Flutter web app from the 'build' stage
